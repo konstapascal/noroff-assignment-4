@@ -10,20 +10,16 @@
 	</head>
 	<body class="bg-white">
 		<!-- NAVBAR -->
-		<nav class="bg-black">
-			<div class="text-white p-4 container mx-auto max-w-3xl">
-				<h1 class="text-2xl">Komputer Store</h1>
-			</div>
+		<nav class="bg-black py-6">
+			<div class="text-2xl text-white container mx-auto">Komputer Store</div>
 		</nav>
 
 		<!-- MAIN APP -->
-		<section class="my-10 mx-8">
+		<section class="container mx-auto mt-10">
 			<!-- BANK, WORK, LAPTOPS -->
-			<div
-				class="flex flex-col flex-wrap lg:flex-row gap-4 justify-between items-center lg:items-stretch lg:justify-center container mx-auto"
-			>
+			<div class="flex flex-col gap-4">
 				<!-- BANK BOX -->
-				<div id="appBank" class="bg-gray-100 py-6 px-10">
+				<div id="appBank" class="bg-gray-100">
 					<h2 class="text-lg font-semibold">Joe Banker</h2>
 					<div>
 						<span>Balance</span>
@@ -33,21 +29,21 @@
 				</div>
 
 				<!-- WORK BOX -->
-				<div id="appWork" class="bg-gray-100 py-6 px-10 max-w-md">
+				<div id="appWork" class="bg-gray-100">
 					<h2 class="text-lg font-semibold">Work</h2>
 					<div>
 						<span>Pay</span>
 						<span id="balance">0 Kr.</span>
 					</div>
-					<div class="flex flex-col lg:flex-row">
+					<div class="">
 						<button class="bg-yellow-400">Bank</button>
 						<button class="bg-blue-400">Work</button>
 					</div>
 				</div>
 
 				<!-- LAPTOPS DROPDOWN -->
-				<div id="appLaptops" class="bg-gray-100 py-6 px-10">
-					<label class="text-lg font-semibold" for="laptops">Laptops</label>
+				<div id="appLaptops" class="bg-gray-100">
+					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
 					<select class="mt-2" name="laptops" id="laptops">
 						<option>Laptop 1</option>
 						<option>Laptop 2</option>
@@ -66,20 +62,17 @@
 		</section>
 
 		<!-- LAPTOP INFO -->
-		<section class="my-10 mx-8">
-			<div
-				id="laptopInfo"
-				class="flex flex-col lg:flex-row lg:w-full justify-center container mx-auto max-w-3xl bg-gray-100"
-			>
+		<section class="container mx-auto mt-4">
+			<div id="laptopInfo" class="bg-gray-100">
 				<img src="" alt="" />
-				<div class="max-w-lg">
+				<div class="">
 					<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
 					<p>
 						This laptop will turn on! It is perfect for the first time user who likes to have
 						a computer around!
 					</p>
 				</div>
-				<div class="flex justify-center gap-4 mt-4">
+				<div class="">
 					<p>1500 NOK</p>
 					<button class="bg-blue-400">BUY NOW</button>
 				</div>
