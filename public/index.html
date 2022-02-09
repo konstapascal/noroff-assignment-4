@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Komputer Store App</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="scripts/index.js"></script>
+	</head>
+	<body class="bg-white">
+		<!-- NAVBAR -->
+		<nav class="bg-black">
+			<div class="text-white p-4 container mx-auto max-w-3xl">
+				<h1 class="text-2xl">Komputer Store</h1>
+			</div>
+		</nav>
+
+		<!-- MAIN APP -->
+		<section class="my-10 mx-8">
+			<!-- BANK, WORK, LAPTOPS -->
+			<div
+				class="flex flex-col flex-wrap lg:flex-row gap-4 justify-between items-center lg:items-stretch lg:justify-center container mx-auto"
+			>
+				<!-- BANK BOX -->
+				<div id="appBank" class="bg-gray-100 py-6 px-10">
+					<h2 class="text-lg font-semibold">Joe Banker</h2>
+					<div>
+						<span>Balance</span>
+						<span id="balance">200 Kr.</span>
+					</div>
+					<button class="bg-green-400">Get a loan</button>
+				</div>
+
+				<!-- WORK BOX -->
+				<div id="appWork" class="bg-gray-100 py-6 px-10 max-w-md">
+					<h2 class="text-lg font-semibold">Work</h2>
+					<div>
+						<span>Pay</span>
+						<span id="balance">0 Kr.</span>
+					</div>
+					<div class="flex flex-col lg:flex-row">
+						<button class="bg-yellow-400">Bank</button>
+						<button class="bg-blue-400">Work</button>
+					</div>
+				</div>
+
+				<!-- LAPTOPS DROPDOWN -->
+				<div id="appLaptops" class="bg-gray-100 py-6 px-10">
+					<label class="text-lg font-semibold" for="laptops">Laptops</label>
+					<select class="mt-2" name="laptops" id="laptops">
+						<option>Laptop 1</option>
+						<option>Laptop 2</option>
+						<option>Laptop 3</option>
+					</select>
+					<div class="mt-4">
+						<h2 class="text-lg font-semibold">Features</h2>
+						<div id="laptopFeatures">
+							<p>It has a screen</p>
+							<p>There's a keyboard</p>
+							<p>(Some keys might be missing)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- LAPTOP INFO -->
+		<section class="my-10 mx-8">
+			<div
+				id="laptopInfo"
+				class="flex flex-col lg:flex-row lg:w-full justify-center container mx-auto max-w-3xl bg-gray-100"
+			>
+				<img src="" alt="" />
+				<div class="max-w-lg">
+					<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
+					<p>
+						This laptop will turn on! It is perfect for the first time user who likes to have
+						a computer around!
+					</p>
+				</div>
+				<div class="flex justify-center gap-4 mt-4">
+					<p>1500 NOK</p>
+					<button class="bg-blue-400">BUY NOW</button>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
