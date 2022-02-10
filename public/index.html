@@ -19,7 +19,9 @@
 		<!-- MAIN APP -->
 		<section class="container mx-auto max-w-4xl mt-16">
 			<!-- BANK, WORK, LAPTOPS -->
-			<div class="flex justify-center flex-wrap mx-4 lg:mx-0 items-center gap-8 lg:gap-12 mt-10">
+			<div
+				class="flex justify-center order-1 flex-wrap mx-4 lg:mx-0 items-center gap-8 lg:gap-12 mt-10"
+			>
 				<!-- BANK BOX -->
 				<div
 					id="appBank"
@@ -47,7 +49,7 @@
 				<!-- LAPTOPS DROPDOWN -->
 				<div
 					id="appLaptops"
-					class="bg-gray-100 py-8 border-2 border-gray-200 px-10 rounded-md shadow-md"
+					class="bg-gray-100 order-3 md:order-2 py-8 border-2 border-gray-200 px-10 rounded-md shadow-md"
 				>
 					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
 					<select class="mt-2" name="laptops" id="laptops">
@@ -68,7 +70,7 @@
 				<!-- WORK BOX -->
 				<div
 					id="appWork"
-					class="bg-gray-100 py-8 px-10 border-2 border-gray-200 rounded-md shadow-md"
+					class="bg-gray-100 order-2 md:order-3 py-8 px-10 border-2 border-gray-200 rounded-md shadow-md"
 				>
 					<h2 class="text-lg font-semibold">Work</h2>
 					<div class="">
@@ -94,34 +96,32 @@
 		</section>
 
 		<!-- LAPTOP INFO -->
-		<section class="container mx-auto mt-12">
-			<div id="laptopList" class="mx-4 lg:mx-0 flex justify-center">
-				<div
-					id="laptopInfo"
-					class="bg-gray-100 flex flex-col lg:h-52 border-2 border-gray-200 max-w-xs lg:max-w-4xl lg:flex-row overflow-hidden rounded-md shadow-md"
-				>
-					<img
-						src="https://noroff-komputer-store-api.herokuapp.com/assets/images/1.png"
-						alt=""
-						class="w-auto"
-					/>
-					<div class="px-8 py-6">
-						<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
-						<p class="mt-2 text-gray-600">
-							This laptop will turn on! It is perfect for the first time user who likes to
-							have a computer around!
-						</p>
-						<div class="flex justify-between items-center mt-4">
-							<div>
-								<span class="font-semibold text-lg">1500</span>
-								<span>Kr.</span>
-							</div>
-							<button
-								class="bg-blue-500 mt-2 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-							>
-								Buy now
-							</button>
+		<section class="container mx-auto mt-12 flex justify-center">
+			<div
+				id="laptopInfo"
+				class="bg-gray-100 flex flex-col md:h-52 border-2 border-gray-200 max-w-xs md:max-w-4xl md:flex-row overflow-hidden rounded-md shadow-md"
+			>
+				<img
+					src="https://noroff-komputer-store-api.herokuapp.com/assets/images/1.png"
+					alt=""
+					class="w-auto"
+				/>
+				<div class="px-8 py-6">
+					<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
+					<p class="mt-2 text-gray-600">
+						This laptop will turn on! It is perfect for the first time user who likes to have
+						a computer around!
+					</p>
+					<div class="flex justify-between items-center mt-4">
+						<div>
+							<span class="font-semibold text-lg">1500</span>
+							<span>Kr.</span>
 						</div>
+						<button
+							class="bg-blue-500 mt-2 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+						>
+							Buy now
+						</button>
 					</div>
 				</div>
 			</div>
