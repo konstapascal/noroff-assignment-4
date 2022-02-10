@@ -52,11 +52,7 @@
 					class="bg-gray-100 order-3 md:order-2 py-8 border-2 border-gray-200 px-10 rounded-md shadow-md"
 				>
 					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
-					<select class="mt-2" name="laptops" id="laptops">
-						<option>Laptop 1</option>
-						<option>Laptop 2</option>
-						<option>Laptop 3</option>
-					</select>
+					<select class="mt-2" name="laptops" id="laptops"></select>
 					<div class="mt-4">
 						<h2 class="text-lg font-semibold">Features</h2>
 						<div id="laptopFeatures">
@@ -96,25 +92,17 @@
 		</section>
 
 		<!-- LAPTOP INFO -->
-		<section class="container mx-auto mt-12 flex justify-center">
+		<section id="laptopInfo" class="container mx-auto mt-12 flex justify-center">
 			<div
-				id="laptopInfo"
-				class="bg-gray-100 flex flex-col md:h-52 border-2 border-gray-200 max-w-xs md:max-w-4xl md:flex-row overflow-hidden rounded-md shadow-md"
+				class="bg-gray-100 flex flex-col md:h-52 border-2 border-gray-200 max-w-xs w-full md:max-w-4xl md:flex-row overflow-hidden rounded-md shadow-md"
 			>
-				<img
-					src="https://noroff-komputer-store-api.herokuapp.com/assets/images/1.png"
-					alt=""
-					class="w-auto"
-				/>
-				<div class="px-8 py-6">
-					<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
-					<p class="mt-2 text-gray-600">
-						This laptop will turn on! It is perfect for the first time user who likes to have
-						a computer around!
-					</p>
+				<img src="" alt="" id="computerImage" class="w-auto" />
+				<div class="px-8 py-6 w-full">
+					<h2 id="computerTitle" class="text-2xl font-semibold"></h2>
+					<p id="computerDescription" class="mt-2 text-gray-600"></p>
 					<div class="flex justify-between items-center mt-4">
 						<div>
-							<span class="font-semibold text-lg">1500</span>
+							<span id="computerPrice" class="font-semibold text-lg"></span>
 							<span>Kr.</span>
 						</div>
 						<button
