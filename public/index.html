@@ -6,55 +6,42 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Komputer Store App</title>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="scripts/index.js"></script>
+		<script src="js/script.js" defer></script>
 	</head>
 	<body class="bg-white">
 		<!-- NAVBAR -->
 		<nav class="bg-black py-6">
-			<div class="text-2xl text-white container max-w-3xl mx-auto">Komputer Store</div>
+			<div class="text-2xl text-white text-center lg:text-left container max-w-5xl mx-auto">
+				Komputer Store
+			</div>
 		</nav>
 
 		<!-- MAIN APP -->
-		<section class="container mx-auto mt-10">
+		<section class="container mx-auto max-w-5xl mt-12">
 			<!-- BANK, WORK, LAPTOPS -->
-			<div class="flex justify-center items-center gap-12">
+			<div class="flex justify-center flex-wrap mx-4 items-center gap-12 mt-10">
 				<!-- BANK BOX -->
-				<div id="appBank" class="bg-gray-100 p-12 rounded-md shadow-md">
+				<div
+					id="appBank"
+					class="bg-gray-100 py-10 px-12 border-2 border-gray-200 rounded-md shadow-md"
+				>
 					<h2 class="text-lg font-semibold">Joe Banker</h2>
 					<div>
 						<span>Balance</span>
-						<span id="balance">200 Kr.</span>
+						<span id="bankBalance" class="font-semibold">200</span> Kr.
 					</div>
 					<button
-						class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+						class="bg-green-500 mt-6 hover:bg-green-600 text-white shadow-sm font-bold py-2 px-4 rounded"
 					>
 						Get a loan
 					</button>
 				</div>
 
-				<!-- WORK BOX -->
-				<div id="appWork" class="bg-gray-100 p-12 rounded-md shadow-md">
-					<h2 class="text-lg font-semibold">Work</h2>
-					<div>
-						<span>Pay</span>
-						<span id="balance">0 Kr.</span>
-					</div>
-					<div class="">
-						<button
-							class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-						>
-							Bank
-						</button>
-						<button
-							class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-						>
-							Work
-						</button>
-					</div>
-				</div>
-
 				<!-- LAPTOPS DROPDOWN -->
-				<div id="appLaptops" class="bg-gray-100 p-12 rounded-md shadow-md">
+				<div
+					id="appLaptops"
+					class="bg-gray-100 py-10 border-2 border-gray-200 px-12 rounded-md shadow-md"
+				>
 					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
 					<select class="mt-2" name="laptops" id="laptops">
 						<option>Laptop 1</option>
@@ -70,27 +57,69 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- WORK BOX -->
+				<div
+					id="appWork"
+					class="bg-gray-100 py-10 px-12 border-2 border-gray-200 rounded-md shadow-md"
+				>
+					<h2 class="text-lg font-semibold">Work</h2>
+					<div class="">
+						<span>Pay</span>
+						<span id="payBalance" class="font-semibold">0</span> Kr.
+					</div>
+					<div class="mt-6">
+						<button
+							id="bankButton"
+							class="bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm font-bold py-2 px-4 rounded"
+						>
+							Bank
+						</button>
+						<button
+							id="workButton"
+							class="bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-sm py-2 px-4 rounded"
+						>
+							Work
+						</button>
+					</div>
+				</div>
 			</div>
 		</section>
 
 		<!-- LAPTOP INFO -->
-		<section class="container mx-auto max-w-3xl mt-4">
-			<div id="laptopInfo" class="bg-gray-100">
-				<img src="" alt="" />
-				<div class="">
-					<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
-					<p>
-						This laptop will turn on! It is perfect for the first time user who likes to have
-						a computer around!
-					</p>
-				</div>
-				<div class="">
-					<p>1500 NOK</p>
-					<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-						BUY NOW
-					</button>
+		<section class="container mx-auto mt-12">
+			<div id="laptopList" class="mx-4 lg:mx-0 flex justify-center mt-10">
+				<div
+					id="laptopInfo"
+					class="bg-gray-100 flex flex-col lg:h-52 border-2 border-gray-200 max-w-xs lg:max-w-3xl lg:flex-row overflow-hidden rounded-md shadow-md"
+				>
+					<img
+						src="https://noroff-komputer-store-api.herokuapp.com/assets/images/1.png"
+						alt=""
+						class="w-auto"
+					/>
+					<div class="px-8 py-6">
+						<h2 class="text-2xl font-semibold">Intol Celeroon E10</h2>
+						<p class="mt-2 text-gray-600">
+							This laptop will turn on! It is perfect for the first time user who likes to
+							have a computer around!
+						</p>
+						<div class="flex justify-between items-center mt-4">
+							<p class="font-semibold">1500 NOK</p>
+							<button
+								class="bg-blue-500 mt-2 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+							>
+								Buy now
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
+
+		<!-- FOOTER -->
+		<footer class="bg-black text-white py-12 text-center mt-12 text-lg">
+			Made by <span class="font-semibold">Konstantinos Pascal</span>
+		</footer>
 	</body>
 </html>
