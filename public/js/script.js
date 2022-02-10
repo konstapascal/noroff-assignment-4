@@ -87,3 +87,10 @@ selectElement.addEventListener('change', e => {
 
 	displayComputer(computer);
 });
+
+computerImageElement.addEventListener(
+	'error',
+	event =>
+		(event.target.src =
+			'https://media.istockphoto.com/vectors/error-icon-vector-illustration-vector-id922024308?k=6&m=922024308&s=612x612&w=0&h=i9EnqwhCGrL08hXRkvF9N0lGFHxJSagZW-jTd1SqlW4=')
+);
