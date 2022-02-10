@@ -11,38 +11,50 @@
 	<body class="bg-white">
 		<!-- NAVBAR -->
 		<nav class="bg-black py-6">
-			<div class="text-2xl text-white container mx-auto">Komputer Store</div>
+			<div class="text-2xl text-white container max-w-3xl mx-auto">Komputer Store</div>
 		</nav>
 
 		<!-- MAIN APP -->
 		<section class="container mx-auto mt-10">
 			<!-- BANK, WORK, LAPTOPS -->
-			<div class="flex flex-col gap-4">
+			<div class="flex justify-center items-center gap-12">
 				<!-- BANK BOX -->
-				<div id="appBank" class="bg-gray-100">
+				<div id="appBank" class="bg-gray-100 p-12 rounded-md shadow-md">
 					<h2 class="text-lg font-semibold">Joe Banker</h2>
 					<div>
 						<span>Balance</span>
 						<span id="balance">200 Kr.</span>
 					</div>
-					<button class="bg-green-400">Get a loan</button>
+					<button
+						class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+					>
+						Get a loan
+					</button>
 				</div>
 
 				<!-- WORK BOX -->
-				<div id="appWork" class="bg-gray-100">
+				<div id="appWork" class="bg-gray-100 p-12 rounded-md shadow-md">
 					<h2 class="text-lg font-semibold">Work</h2>
 					<div>
 						<span>Pay</span>
 						<span id="balance">0 Kr.</span>
 					</div>
 					<div class="">
-						<button class="bg-yellow-400">Bank</button>
-						<button class="bg-blue-400">Work</button>
+						<button
+							class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+						>
+							Bank
+						</button>
+						<button
+							class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+						>
+							Work
+						</button>
 					</div>
 				</div>
 
 				<!-- LAPTOPS DROPDOWN -->
-				<div id="appLaptops" class="bg-gray-100">
+				<div id="appLaptops" class="bg-gray-100 p-12 rounded-md shadow-md">
 					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
 					<select class="mt-2" name="laptops" id="laptops">
 						<option>Laptop 1</option>
@@ -62,7 +74,7 @@
 		</section>
 
 		<!-- LAPTOP INFO -->
-		<section class="container mx-auto mt-4">
+		<section class="container mx-auto max-w-3xl mt-4">
 			<div id="laptopInfo" class="bg-gray-100">
 				<img src="" alt="" />
 				<div class="">
@@ -74,7 +86,9 @@
 				</div>
 				<div class="">
 					<p>1500 NOK</p>
-					<button class="bg-blue-400">BUY NOW</button>
+					<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+						BUY NOW
+					</button>
 				</div>
 			</div>
 		</section>
