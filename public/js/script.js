@@ -1,91 +1,122 @@
 // Getting the DOM elements
 
+// Buttons
 const workButtonElement = document.querySelector('#workButton');
 const loanButtonElement = document.querySelector('#loanButton');
 const bankButtonElement = document.querySelector('#bankButton');
+const repayLoanButtonElement = document.querySelector('#repayLoanButton');
 
+// Balances
 const bankBalanceElement = document.querySelector('#bankBalance');
 const payBalanceElement = document.querySelector('#payBalance');
+const loanBalanceElement = document.querySelector('#loanBalance');
 
-const selectElement = document.querySelector('#laptops');
-
+// Computer elements
 const computerTitleElement = document.querySelector('#computerTitle');
 const computerDesciptionElement = document.querySelector('#computerDescription');
 const computerPriceElement = document.querySelector('#computerPrice');
 const computerImageElement = document.querySelector('#computerImage');
+const computerFeaturesElement = document.querySelector('#laptopFeatures');
+
+const selectElement = document.querySelector('#laptops');
 
 // Getting API data
 
-const BASE_URL = 'https://noroff-komputer-store-api.herokuapp.com';
+let computers;
+let boughtComputers = [];
 
-let finalComputers;
+const parse = Number.parseInt;
 
 (async () => {
-	const computers = await getComputers(`${BASE_URL}/computers`);
-	const imageUrls = getImageUrls(computers);
+	const BASE_URL = 'https://noroff-komputer-store-api.herokuapp.com';
+	const tempComputers = await getComputers(`${BASE_URL}/computers`);
 
-	finalComputers = computers.map((computer, idx) => ({
+	computers = tempComputers.map(computer => ({
 		...computer,
-		image: imageUrls[idx]
+		image: `${BASE_URL}/${computer.image}`
 	}));
 
-	addDropdownOptions(finalComputers);
-	displayComputer(finalComputers[0]);
+	addDropdownOptions(computers);
+
+	displayComputer(computers[0]);
+	displayComputerFeatures(computers[0]);
 })();
 
 async function getComputers(url) {
-	const req = await fetch(url);
-	const json = await req.json();
+	const res = await fetch(url);
+	const computersJson = await res.json();
 
-	const computers = [...json];
-
-	return computers;
-}
-
-function getImageUrls(computers) {
-	const computerImages = [];
-
-	for (computer of computers) {
-		computerImages.push(`${BASE_URL}/${computer.image}`);
-	}
-
-	return computerImages;
+	return [...computersJson];
 }
 
 function displayComputer(computer) {
-	computerTitleElement.innerHTML = computer.title;
-	computerDesciptionElement.innerHTML = computer.description;
-	computerPriceElement.innerHTML = computer.price;
+	computerTitleElement.innerText = computer.title;
+	computerDesciptionElement.innerText = computer.description;
+	computerPriceElement.innerText = computer.price;
 	computerImageElement.src = computer.image;
 }
 
+function displayComputerFeatures(computer) {
+	computerFeaturesElement.innerHTML = '';
+
+	for (const feature of computer.specs) {
+		const listItem = document.createElement('li');
+		const text = document.createTextNode(feature);
+
+		listItem.appendChild(text);
+		computerFeaturesElement.append(listItem);
+	}
+}
+
 function addDropdownOptions(computers) {
-	for (computer of computers) {
-		const option = new Option(computer.title);
+	for (const computer of computers) {
+		const option = document.createElement('option');
+		option.innerText = computer.title;
+
 		selectElement.append(option);
 	}
+}
+
+function hasUnpaidLoan() {
+	return parse(loanBalanceElement.innerText) > 0;
 }
 
 // Adding event listeners
 
 workButtonElement.addEventListener('click', e => {
-	const prevTotal = Number.parseInt(payBalanceElement.innerHTML);
-	payBalanceElement.innerHTML = prevTotal + 100;
+	const prevPayTotal = parse(payBalanceElement.innerText);
+	payBalanceElement.innerText = prevPayTotal + 100;
 });
 
 bankButtonElement.addEventListener('click', e => {
-	const prevTotal = Number.parseInt(bankBalanceElement.innerHTML);
-	const payBalance = Number.parseInt(payBalanceElement.innerHTML);
+	const prevBankTotal = parse(bankBalanceElement.innerText);
+	const payBalance = parse(payBalanceElement.innerText);
 
-	bankBalanceElement.innerHTML = prevTotal + payBalance;
-	payBalanceElement.innerHTML = 0;
+	bankBalanceElement.innerText = prevBankTotal + payBalance;
+	payBalanceElement.innerText = 0;
+});
+
+loanButtonElement.addEventListener('click', () => {
+	if (hasUnpaidLoan()) return console.error('You cannot take another loan!');
+
+	const bankBalance = parse(bankBalanceElement.innerText);
+	const loanAmount = window.prompt('Choose your loan amount:');
+
+	if (loanAmount === null || loanAmount === '') return console.error('Please enter a value!');
+	if (parse(loanAmount) > bankBalance) return console.error('Loan amount too high!');
+
+	loanBalanceElement.innerText = loanAmount;
+	bankBalanceElement.innerText = parse(bankBalance) + parse(loanAmount);
+
+	repayLoanButtonElement.classList.toggle('hidden');
 });
 
 selectElement.addEventListener('change', e => {
 	const computerTitle = e.target.value;
-	const computer = finalComputers.find(computer => computer.title === computerTitle);
+	const computer = computers.find(computer => computer.title === computerTitle);
 
 	displayComputer(computer);
+	displayComputerFeatures(computer);
 });
 
 computerImageElement.addEventListener(

@@ -16,85 +16,10 @@
 			</div>
 		</nav>
 
-		<!-- MAIN APP -->
-		<section class="container mx-auto max-w-4xl mt-16">
-			<!-- BANK, WORK, LAPTOPS -->
-			<div
-				class="flex justify-center order-1 flex-wrap mx-4 md:mx-0 items-center gap-8 lg:gap-12 mt-10"
-			>
-				<!-- BANK BOX -->
-				<div
-					id="appBank"
-					class="bg-gray-100 py-8 px-10 border-2 border-gray-200 rounded-md shadow-md"
-				>
-					<h2 class="text-lg font-semibold">Joe Banker</h2>
-					<div>
-						<span>Balance</span>
-						<span id="bankBalance" class="font-semibold">200</span> Kr.
-					</div>
-					<div class="mt-6 flex gap-2 flex-col">
-						<button
-							class="bg-green-500 hover:bg-green-600 text-white shadow-sm font-bold py-2 px-4 rounded"
-						>
-							Get a loan
-						</button>
-						<button
-							class="bg-green-500 hidden hover:bg-green-600 text-white shadow-sm font-bold py-2 px-4 rounded"
-						>
-							Pay loan
-						</button>
-					</div>
-				</div>
-
-				<!-- LAPTOPS DROPDOWN -->
-				<div
-					id="appLaptops"
-					class="bg-gray-100 order-3 md:order-2 py-8 border-2 border-gray-200 px-10 rounded-md shadow-md"
-				>
-					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
-					<select class="mt-2" name="laptops" id="laptops"></select>
-					<div class="mt-4">
-						<h2 class="text-lg font-semibold">Features</h2>
-						<div id="laptopFeatures">
-							<p>It has a screen</p>
-							<p>There's a keyboard</p>
-							<p>(Some keys might be missing)</p>
-						</div>
-					</div>
-				</div>
-
-				<!-- WORK BOX -->
-				<div
-					id="appWork"
-					class="bg-gray-100 order-2 md:order-3 px-10 py-8 border-2 border-gray-200 rounded-md shadow-md"
-				>
-					<h2 class="text-lg font-semibold">Work</h2>
-					<div class="">
-						<span>Pay</span>
-						<span id="payBalance" class="font-semibold">0</span> Kr.
-					</div>
-					<div class="mt-6 flex gap-1">
-						<button
-							id="bankButton"
-							class="bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm font-bold py-2 px-4 rounded"
-						>
-							Bank
-						</button>
-						<button
-							id="workButton"
-							class="bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-sm py-2 px-4 rounded"
-						>
-							Work
-						</button>
-					</div>
-				</div>
-			</div>
-		</section>
-
 		<!-- LAPTOP INFO -->
-		<section id="laptopInfo" class="container mx-auto mt-12 flex justify-center">
+		<section id="laptopInfo" class="container mx-auto mt-16 flex justify-center">
 			<div
-				class="bg-gray-100 flex flex-col md:h-52 border-2 border-gray-200 max-w-xs w-full md:max-w-4xl md:flex-row overflow-hidden rounded-md shadow-md"
+				class="bg-gray-100 flex flex-col md:h-52 border-2 mx-4 lg:mx-0 border-gray-200 max-w-xs w-full md:max-w-4xl md:flex-row overflow-hidden rounded-md shadow-lg"
 			>
 				<img src="" alt="" id="computerImage" class="w-auto md:w-1/2 object-cover" />
 				<div class="px-8 py-6 w-full">
@@ -115,8 +40,87 @@
 			</div>
 		</section>
 
+		<!-- MAIN APP -->
+		<section class="container mx-auto max-w-4xl">
+			<!-- BANK, WORK, LAPTOPS -->
+			<div
+				class="flex justify-center lg:justify-between flex-wrap mx-4 md:mx-0 items-start gap-8 lg:gap-12 mt-8"
+			>
+				<!-- BANK BOX -->
+				<div
+					id="appBank"
+					class="bg-gray-100 lg:py-8 order-3 md:order-1 w-60 lg:px-10 py-6 px-8 border-2 border-gray-200 rounded-md shadow-lg"
+				>
+					<h2 class="text-lg font-semibold">Joe Banker</h2>
+					<div class="mt-2">
+						<div class="flex justify-between">
+							<p>Balance:</p>
+							<p><span id="bankBalance" class="font-semibold">200</span> Kr.</p>
+						</div>
+						<div class="flex justify-between">
+							<span>Left loan:</span>
+							<p><span id="loanBalance" class="font-semibold">0</span> Kr.</p>
+						</div>
+					</div>
+					<div class="mt-6 flex gap-2 flex-col">
+						<button
+							id="loanButton"
+							class="bg-red-500 hover:bg-red-600 text-white shadow-sm font-bold py-2 px-4 rounded"
+						>
+							Get a loan
+						</button>
+						<button
+							id="repayLoanButton"
+							class="bg-green-500 hidden hover:bg-green-600 text-white shadow-sm font-bold py-2 px-4 rounded"
+						>
+							Repay loan
+						</button>
+					</div>
+				</div>
+
+				<!-- LAPTOPS DROPDOWN -->
+				<div
+					id="appLaptops"
+					class="bg-gray-100 order-1 md:order-2 md:order-2 w-80 py-6 lg:py-8 border-2 border-gray-200 px-8 lg:px-10 rounded-md shadow-lg"
+				>
+					<label class="text-lg font-semibold block" for="laptops">Laptops</label>
+					<select class="mt-2" name="laptops" id="laptops"></select>
+					<div class="mt-4">
+						<h2 class="text-lg font-semibold">Features</h2>
+						<ul id="laptopFeatures"></ul>
+					</div>
+				</div>
+
+				<!-- WORK BOX -->
+				<div
+					id="appWork"
+					class="bg-gray-100 order-2 md:order-3 w-60 px-10 py-8 border-2 border-gray-200 rounded-md shadow-lg"
+				>
+					<h2 class="text-lg font-semibold">Work</h2>
+					<div class="flex justify-between">
+						<p>Pay</p>
+						<p><span id="payBalance" class="font-semibold">0</span> Kr.</p>
+					</div>
+					<div class="mt-6 flex gap-2 flex-col">
+						<button
+							id="bankButton"
+							class="bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm font-bold py-2 px-4 rounded"
+						>
+							Bank
+						</button>
+						<button
+							id="workButton"
+							class="bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-sm py-2 px-4 rounded"
+						>
+							Work
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- FOOTER -->
-		<footer class="text-center mt-16 text-md">
+		<footer class="text-center my-16 text-md">
 			Made by
 			<a href="https://github.com/konstapascal" class="font-semibold">Konstantinos Pascal</a>
 		</footer>
