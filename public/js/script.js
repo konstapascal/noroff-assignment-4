@@ -1,17 +1,13 @@
-// Getting the DOM elements
-
-// Buttons
 const workButtonElement = document.querySelector('#workButton');
 const loanButtonElement = document.querySelector('#loanButton');
 const bankButtonElement = document.querySelector('#bankButton');
 const repayLoanButtonElement = document.querySelector('#repayLoanButton');
+const buyComputerButtonElement = document.querySelector('#buyComputerButton');
 
-// Balances
 const bankBalanceElement = document.querySelector('#bankBalance');
 const payBalanceElement = document.querySelector('#payBalance');
 const loanBalanceElement = document.querySelector('#loanBalance');
 
-// Computer elements
 const computerTitleElement = document.querySelector('#computerTitle');
 const computerDesciptionElement = document.querySelector('#computerDescription');
 const computerPriceElement = document.querySelector('#computerPrice');
@@ -19,8 +15,6 @@ const computerImageElement = document.querySelector('#computerImage');
 const computerFeaturesElement = document.querySelector('#laptopFeatures');
 
 const selectElement = document.querySelector('#laptops');
-
-// Getting API data
 
 let computers;
 let boughtComputers = [];
@@ -71,8 +65,8 @@ function displayComputerFeatures(computer) {
 function addDropdownOptions(computers) {
 	for (const computer of computers) {
 		const option = document.createElement('option');
-		option.innerText = computer.title;
 
+		option.innerText = computer.title;
 		selectElement.append(option);
 	}
 }
@@ -81,18 +75,28 @@ function hasUnpaidLoan() {
 	return parse(loanBalanceElement.innerText) > 0;
 }
 
-// Adding event listeners
-
 workButtonElement.addEventListener('click', e => {
-	const prevPayTotal = parse(payBalanceElement.innerText);
-	payBalanceElement.innerText = prevPayTotal + 100;
+	const payBalance = parse(payBalanceElement.innerText);
+
+	payBalanceElement.innerText = payBalance + 100;
 });
 
 bankButtonElement.addEventListener('click', e => {
-	const prevBankTotal = parse(bankBalanceElement.innerText);
+	const bankBalance = parse(bankBalanceElement.innerText);
 	const payBalance = parse(payBalanceElement.innerText);
 
-	bankBalanceElement.innerText = prevBankTotal + payBalance;
+	if (hasUnpaidLoan()) {
+		const tenPercentOfPay = payBalance * 0.1;
+		const payToDeposit = payBalance - tenPercentOfPay;
+
+		bankBalanceElement.innerText = bankBalance + payToDeposit;
+		loanBalanceElement.innerText = parse(loanBalanceElement.innerText) - tenPercentOfPay;
+		payBalanceElement.innerText = 0;
+
+		return;
+	}
+
+	bankBalanceElement.innerText = bankBalance + payBalance;
 	payBalanceElement.innerText = 0;
 });
 
@@ -111,12 +115,52 @@ loanButtonElement.addEventListener('click', () => {
 	repayLoanButtonElement.classList.toggle('hidden');
 });
 
+repayLoanButtonElement.addEventListener('click', () => {
+	const bankBalance = parse(bankBalanceElement.innerText);
+	const payBalance = parse(payBalanceElement.innerText);
+	const loanBalance = parse(loanBalanceElement.innerText);
+
+	if (payBalance > loanBalance) {
+		const payToDeposit = payBalance - loanBalance;
+
+		bankBalanceElement.innerText = bankBalance + payToDeposit;
+		payBalanceElement.innerText = 0;
+		loanBalanceElement.innerText = 0;
+
+		repayLoanButtonElement.classList.toggle('hidden');
+
+		return;
+	}
+
+	loanBalanceElement.innerText = loanBalance - payBalance;
+	payBalanceElement.innerText = 0;
+});
+
+buyComputerButtonElement.addEventListener('click', e => {
+	const computerPrice = parse(computerPriceElement.innerText);
+	const bankBalance = parse(bankBalanceElement.innerText);
+
+	if (computerPrice > bankBalance) return console.error('Not enough funds to buy this computer!');
+
+	bankBalanceElement.innerText = bankBalance - computerPrice;
+
+	boughtComputers.push(computerTitleElement.innerText);
+	buyComputerButtonElement.disabled = true;
+});
+
 selectElement.addEventListener('change', e => {
 	const computerTitle = e.target.value;
 	const computer = computers.find(computer => computer.title === computerTitle);
 
 	displayComputer(computer);
 	displayComputerFeatures(computer);
+
+	if (boughtComputers.includes(computerTitle)) {
+		buyComputerButtonElement.disabled = true;
+		return;
+	}
+
+	buyComputerButtonElement.disabled = false;
 });
 
 computerImageElement.addEventListener(
