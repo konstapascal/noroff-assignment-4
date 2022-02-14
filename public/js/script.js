@@ -1,3 +1,4 @@
+// Declaring DOM variables
 const workButtonElement = document.querySelector('#workButton');
 const loanButtonElement = document.querySelector('#loanButton');
 const bankButtonElement = document.querySelector('#bankButton');
@@ -16,26 +17,30 @@ const computerFeaturesElement = document.querySelector('#laptopFeatures');
 
 const selectElement = document.querySelector('#laptops');
 
+// Global computers and bought computers variables
 let computers;
 let boughtComputers = [];
 
+// Shortcut for common method within the app
 const parse = Number.parseInt;
 
+// Init function
 (async () => {
 	const BASE_URL = 'https://noroff-komputer-store-api.herokuapp.com';
 	const tempComputers = await getComputers(`${BASE_URL}/computers`);
 
+	// Add image links to computers
 	computers = tempComputers.map(computer => ({
 		...computer,
 		image: `${BASE_URL}/${computer.image}`
 	}));
 
+	// Populate dropdown and display initial computer
 	addDropdownOptions(computers);
-
 	displayComputer(computers[0]);
-	displayComputerFeatures(computers[0]);
 })();
 
+// Get all computers from the API
 async function getComputers(url) {
 	const res = await fetch(url);
 	const computersJson = await res.json();
@@ -43,14 +48,21 @@ async function getComputers(url) {
 	return [...computersJson];
 }
 
+// Display a computer to the screen
 function displayComputer(computer) {
+	// Display info
 	computerTitleElement.innerText = computer.title;
 	computerDesciptionElement.innerText = computer.description;
 	computerPriceElement.innerText = computer.price;
 	computerImageElement.src = computer.image;
+
+	// Display features list
+	displayComputerFeatures(computer);
 }
 
+// For every computer feature, append a list item tag
 function displayComputerFeatures(computer) {
+	// Reset area of previous items
 	computerFeaturesElement.innerHTML = '';
 
 	for (const feature of computer.specs) {
@@ -62,6 +74,7 @@ function displayComputerFeatures(computer) {
 	}
 }
 
+// For each computer, add a dropdown option
 function addDropdownOptions(computers) {
 	for (const computer of computers) {
 		const option = document.createElement('option');
@@ -71,10 +84,12 @@ function addDropdownOptions(computers) {
 	}
 }
 
+// Simple check to see if user has upaid loan
 function hasUnpaidLoan() {
 	return parse(loanBalanceElement.innerText) > 0;
 }
 
+// Adding event listeners
 workButtonElement.addEventListener('click', e => {
 	const payBalance = parse(payBalanceElement.innerText);
 
@@ -120,7 +135,7 @@ repayLoanButtonElement.addEventListener('click', () => {
 	const payBalance = parse(payBalanceElement.innerText);
 	const loanBalance = parse(loanBalanceElement.innerText);
 
-	if (payBalance > loanBalance) {
+	if (payBalance >= loanBalance) {
 		const payToDeposit = payBalance - loanBalance;
 
 		bankBalanceElement.innerText = bankBalance + payToDeposit;
