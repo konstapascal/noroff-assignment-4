@@ -17,7 +17,7 @@ const computerFeaturesElement = document.querySelector('#laptopFeatures');
 
 const selectElement = document.querySelector('#laptops');
 
-// Global computers and bought computers variables
+// Global computers and bought computers
 let computers;
 let boughtComputers = [];
 
@@ -90,20 +90,25 @@ function hasUnpaidLoan() {
 }
 
 // Adding event listeners
+// Work button
 workButtonElement.addEventListener('click', e => {
 	const payBalance = parse(payBalanceElement.innerText);
 
+	// Increment pay balance by 100
 	payBalanceElement.innerText = payBalance + 100;
 });
 
+// Bank button
 bankButtonElement.addEventListener('click', e => {
 	const bankBalance = parse(bankBalanceElement.innerText);
 	const payBalance = parse(payBalanceElement.innerText);
 
+	// If has unpaid loan
 	if (hasUnpaidLoan()) {
 		const tenPercentOfPay = payBalance * 0.1;
 		const payToDeposit = payBalance - tenPercentOfPay;
 
+		// Deposit 90% and pay loan with the rest
 		bankBalanceElement.innerText = bankBalance + payToDeposit;
 		loanBalanceElement.innerText = parse(loanBalanceElement.innerText) - tenPercentOfPay;
 		payBalanceElement.innerText = 0;
@@ -111,73 +116,94 @@ bankButtonElement.addEventListener('click', e => {
 		return;
 	}
 
+	// If has no unpaid loan, deposit 100% of pay balance
 	bankBalanceElement.innerText = bankBalance + payBalance;
 	payBalanceElement.innerText = 0;
 });
 
+// Loan button
 loanButtonElement.addEventListener('click', () => {
+	// If has unpaid loan, return error
 	if (hasUnpaidLoan()) return console.error('You cannot take another loan!');
 
 	const bankBalance = parse(bankBalanceElement.innerText);
 	const loanAmount = window.prompt('Choose your loan amount:');
 
+	// If no amount is given or is too high
 	if (loanAmount === null || loanAmount === '') return console.error('Please enter a value!');
 	if (parse(loanAmount) > bankBalance) return console.error('Loan amount too high!');
 
+	// Get loan
 	loanBalanceElement.innerText = loanAmount;
 	bankBalanceElement.innerText = parse(bankBalance) + parse(loanAmount);
 
+	// Display repay loan button
 	repayLoanButtonElement.classList.toggle('hidden');
 });
 
+// Repay loan button
 repayLoanButtonElement.addEventListener('click', () => {
 	const bankBalance = parse(bankBalanceElement.innerText);
 	const payBalance = parse(payBalanceElement.innerText);
 	const loanBalance = parse(loanBalanceElement.innerText);
 
+	// If you have have more pay balance than upaid loan
 	if (payBalance >= loanBalance) {
 		const payToDeposit = payBalance - loanBalance;
 
+		// Deposit the rest of pay after paying off loan
 		bankBalanceElement.innerText = bankBalance + payToDeposit;
 		payBalanceElement.innerText = 0;
 		loanBalanceElement.innerText = 0;
 
+		// Hide button since loan is paid off
 		repayLoanButtonElement.classList.toggle('hidden');
 
 		return;
 	}
 
+	// if less pay balance than loan
 	loanBalanceElement.innerText = loanBalance - payBalance;
 	payBalanceElement.innerText = 0;
 });
 
+// Buy computer button
 buyComputerButtonElement.addEventListener('click', e => {
 	const computerPrice = parse(computerPriceElement.innerText);
 	const bankBalance = parse(bankBalanceElement.innerText);
 
+	// Not enough money
 	if (computerPrice > bankBalance) return console.error('Not enough funds to buy this computer!');
 
 	bankBalanceElement.innerText = bankBalance - computerPrice;
 
+	// Push computer to bought computers array
+	// Disable button
 	boughtComputers.push(computerTitleElement.innerText);
 	buyComputerButtonElement.disabled = true;
 });
 
+// Select option dropwdown
 selectElement.addEventListener('change', e => {
 	const computerTitle = e.target.value;
+	// Find the clicked computer in the global computers array
 	const computer = computers.find(computer => computer.title === computerTitle);
 
+	// Display computer and its features
 	displayComputer(computer);
 	displayComputerFeatures(computer);
 
+	// If it has been bought, disable its button
 	if (boughtComputers.includes(computerTitle)) {
 		buyComputerButtonElement.disabled = true;
 		return;
 	}
 
+	// Otherwise, enable button
 	buyComputerButtonElement.disabled = false;
 });
 
+// Set default image if anything goes wrong
 computerImageElement.addEventListener(
 	'error',
 	event =>
