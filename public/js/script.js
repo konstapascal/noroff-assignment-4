@@ -129,7 +129,8 @@ loanButtonElement.addEventListener('click', () => {
 	const bankBalance = parse(bankBalanceElement.innerText);
 	const loanAmount = window.prompt('Choose your loan amount:');
 
-	// If no amount is given or is too high
+	// If no amount is given, is too high or is invalid number
+	if (isNaN(loanAmount)) return console.error('Please enter a numeric value!');
 	if (loanAmount === null || loanAmount === '') return console.error('Please enter a value!');
 	if (parse(loanAmount) > bankBalance) return console.error('Loan amount too high!');
 
